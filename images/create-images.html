@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .image-container { margin: 20px 0; text-align: center; }
+        canvas { border: 1px solid #ddd; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Generating Images for Appointment Management System</h1>
+    <p>This page will generate placeholder images for the system.</p>
+    
+    <div class="image-container">
+        <h3>Logo</h3>
+        <canvas id="logo" width="200" height="60"></canvas>
+    </div>
+    
+    <div class="image-container">
+        <h3>User Profile (40x40)</h3>
+        <canvas id="profile40" width="40" height="40"></canvas>
+    </div>
+    
+    <div class="image-container">
+        <h3>User Profile (60x60)</h3>
+        <canvas id="profile60" width="60" height="60"></canvas>
+    </div>
+    
+    <div class="image-container">
+        <h3>Default Avatar (100x100)</h3>
+        <canvas id="avatar100" width="100" height="100"></canvas>
+    </div>
+
+    <script>
+        // Generate Logo
+        function createLogo() {
+            const canvas = document.getElementById('logo');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 200, 60);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 200, 60);
+            
+            // Logo text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('AppointPro', 100, 38);
+            
+            // Icon (calendar)
+            ctx.fillStyle = '#ffd700';
+            ctx.fillRect(20, 15, 16, 12);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(22, 17, 12, 8);
+            ctx.fillStyle = '#667eea';
+            ctx.fillRect(24, 19, 2, 2);
+            ctx.fillRect(28, 19, 2, 2);
+            ctx.fillRect(32, 19, 2, 2);
+            ctx.fillRect(24, 22, 2, 2);
+            ctx.fillRect(28, 22, 2, 2);
+        }
+        
+        // Generate Profile Picture 40x40
+        function createProfile40() {
+            const canvas = document.getElementById('profile40');
+            const ctx = canvas.getContext('2d');
+            
+            // Background circle
+            ctx.fillStyle = '#667eea';
+            ctx.beginPath();
+            ctx.arc(20, 20, 20, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // User icon
+            ctx.fillStyle = '#ffffff';
+            // Head
+            ctx.beginPath();
+            ctx.arc(20, 16, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            // Body
+            ctx.beginPath();
+            ctx.arc(20, 32, 10, 0, Math.PI, true);
+            ctx.fill();
+        }
+        
+        // Generate Profile Picture 60x60
+        function createProfile60() {
+            const canvas = document.getElementById('profile60');
+            const ctx = canvas.getContext('2d');
+            
+            // Background circle
+            ctx.fillStyle = '#764ba2';
+            ctx.beginPath();
+            ctx.arc(30, 30, 30, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // User icon
+            ctx.fillStyle = '#ffffff';
+            // Head
+            ctx.beginPath();
+            ctx.arc(30, 24, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            // Body
+            ctx.beginPath();
+            ctx.arc(30, 46, 14, 0, Math.PI, true);
+            ctx.fill();
+        }
+        
+        // Generate Avatar 100x100
+        function createAvatar100() {
+            const canvas = document.getElementById('avatar100');
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, 100, 100);
+            gradient.addColorStop(0, '#43e97b');
+            gradient.addColorStop(1, '#38f9d7');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(50, 50, 50, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // User icon
+            ctx.fillStyle = '#ffffff';
+            // Head
+            ctx.beginPath();
+            ctx.arc(50, 40, 12, 0, 2 * Math.PI);
+            ctx.fill();
+            // Body
+            ctx.beginPath();
+            ctx.arc(50, 75, 20, 0, Math.PI, true);
+            ctx.fill();
+        }
+        
+        // Save canvas as image
+        function saveCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+        
+        // Generate all images
+        window.onload = function() {
+            createLogo();
+            createProfile40();
+            createProfile60();
+            createAvatar100();
+            
+            // Auto-download after a short delay
+            setTimeout(() => {
+                saveCanvas('logo', 'logo.png');
+                setTimeout(() => saveCanvas('profile40', 'profile-40.png'), 100);
+                setTimeout(() => saveCanvas('profile60', 'profile-60.png'), 200);
+                setTimeout(() => saveCanvas('avatar100', 'avatar-100.png'), 300);
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
+

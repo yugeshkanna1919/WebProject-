@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate image.png</title>
+</head>
+<body>
+    <h1>Generating image.png</h1>
+    <canvas id="imageCanvas" width="400" height="300" style="border: 1px solid #ddd;"></canvas>
+    <br><br>
+    <button onclick="downloadImage()">Download as image.png</button>
+
+    <script>
+        const canvas = document.getElementById('imageCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Create gradient background
+        const gradient = ctx.createLinearGradient(0, 0, 400, 300);
+        gradient.addColorStop(0, '#667eea');
+        gradient.addColorStop(0.5, '#764ba2');
+        gradient.addColorStop(1, '#667eea');
+        
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Draw AppointPro illustration
+        
+        // Calendar icon (large)
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(50, 50, 80, 70);
+        ctx.fillStyle = '#667eea';
+        ctx.fillRect(60, 60, 60, 50);
+        
+        // Calendar grid
+        ctx.fillStyle = 'white';
+        for(let row = 0; row < 3; row++) {
+            for(let col = 0; col < 4; col++) {
+                ctx.fillRect(65 + col * 12, 75 + row * 10, 8, 6);
+            }
+        }
+
+        // User icons
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.beginPath();
+        ctx.arc(200, 80, 25, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        ctx.fillStyle = '#667eea';
+        ctx.beginPath();
+        ctx.arc(200, 75, 8, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // User body
+        ctx.beginPath();
+        ctx.arc(200, 95, 15, 0, Math.PI, true);
+        ctx.fill();
+
+        // Clock
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.beginPath();
+        ctx.arc(150, 180, 30, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        ctx.fillStyle = '#f7fafc';
+        ctx.beginPath();
+        ctx.arc(150, 180, 25, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        ctx.fillStyle = '#667eea';
+        ctx.beginPath();
+        ctx.arc(150, 180, 3, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Clock hands
+        ctx.strokeStyle = '#667eea';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(150, 180);
+        ctx.lineTo(150, 165);
+        ctx.stroke();
+        
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(150, 180);
+        ctx.lineTo(165, 180);
+        ctx.stroke();
+
+        // Document
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(250, 160, 40, 50);
+        
+        ctx.fillStyle = '#667eea';
+        ctx.fillRect(255, 170, 30, 2);
+        ctx.fillRect(255, 175, 25, 2);
+        ctx.fillRect(255, 180, 30, 2);
+        ctx.fillRect(255, 185, 20, 2);
+        ctx.fillRect(255, 190, 30, 2);
+        ctx.fillRect(255, 195, 25, 2);
+
+        // Charts
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+        ctx.fillRect(310, 170, 40, 30);
+        
+        // Bar chart
+        ctx.fillStyle = '#667eea';
+        ctx.fillRect(315, 190, 4, 8);
+        ctx.fillStyle = '#764ba2';
+        ctx.fillRect(322, 187, 4, 11);
+        ctx.fillStyle = '#43e97b';
+        ctx.fillRect(329, 185, 4, 13);
+        ctx.fillStyle = '#f093fb';
+        ctx.fillRect(336, 192, 4, 6);
+
+        // Connection lines
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(130, 90);
+        ctx.lineTo(175, 90);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(225, 85);
+        ctx.lineTo(260, 110);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(300, 125);
+        ctx.lineTo(315, 175);
+        ctx.stroke();
+        
+        ctx.beginPath();
+        ctx.moveTo(180, 180);
+        ctx.lineTo(250, 180);
+        ctx.stroke();
+
+        // Title text
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 24px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('AppointPro', 200, 250);
+        
+        ctx.font = '14px Arial';
+        ctx.globalAlpha = 0.9;
+        ctx.fillText('Professional Appointment Management', 200, 275);
+
+        // Function to download the image
+        function downloadImage() {
+            const link = document.createElement('a');
+            link.download = 'image.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        // Auto-download after page loads
+        window.onload = function() {
+            setTimeout(() => {
+                downloadImage();
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

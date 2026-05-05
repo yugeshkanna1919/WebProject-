@@ -1,0 +1,10 @@
+// This file will define the API routes and link them to the appropriate controllers.
+
+const express = require('express');
+const router = express.Router();
+const dataController = require('../controllers/dataController');
+
+// Define the route for fetching data
+router.get('/data', dataController.getData);
+
+module.exports = router;

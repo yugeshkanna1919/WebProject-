@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Appointment Management System</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-calendar-check"></i>
+                <h2>AppointPro</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-appointment.html">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fas fa-list"></i>
+                        <span>View Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="clients.html">
+                        <i class="fas fa-users"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Access Control Check -->
+            <div id="access-denied" class="access-denied" style="display: none;">
+                <div class="access-denied-content">
+                    <div class="access-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h1>Access Restricted</h1>
+                    <p>Settings can only be accessed by authorized administrators.</p>
+                    <button class="btn btn-primary" onclick="appointmentManager.showAdminLogin()">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Admin Login
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='index.html'">
+                        <i class="fas fa-home"></i>
+                        Back to Dashboard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Settings Content (Hidden by default) -->
+            <div id="settings-content" style="display: none;">
+                <!-- Header -->
+                <header class="header">
+                    <div class="header-left">
+                        <h1>Settings</h1>
+                        <p>Configure your appointment management system preferences.</p>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn btn-secondary" onclick="appointmentManager.logoutAdmin()">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Logout Admin
+                        </button>
+                        <div class="user-profile">
+                            <img src="images/user-profile.svg" alt="User">
+                            <span>Rajesh Kumar (Admin)</span>
+                        </div>
+                    </div>
+                </header>
+
+            <!-- Settings Content -->
+            <div class="settings-container">
+                <form class="settings-form">
+                    <!-- Clinic Information -->
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-clinic-medical"></i> Clinic Information</h2>
+                            <p>Basic information about your clinic or practice</p>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="clinic-name">Clinic Name *</label>
+                                    <input type="text" id="clinic-name" name="clinicName" value="AppointPro Clinic" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="clinic-phone">Phone Number</label>
+                                    <input type="tel" id="clinic-phone" name="phone" value="+91-44-2345-6789">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="clinic-email">Email Address</label>
+                                    <input type="email" id="clinic-email" name="email" value="info@appointpro.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="clinic-website">Website</label>
+                                    <input type="url" id="clinic-website" name="website" value="https://appointpro.com">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="clinic-address">Address</label>
+                                <textarea id="clinic-address" name="address" rows="3">123 Anna Salai, T. Nagar, Chennai 600017</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Working Hours -->
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-clock"></i> Working Hours</h2>
+                            <p>Set your clinic's operating hours for each day of the week</p>
+                        </div>
+                        <div class="working-hours-grid">
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="monday-enabled" checked>
+                                    <label for="monday-enabled">Monday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="monday-start" value="08:00">
+                                    <span>to</span>
+                                    <input type="time" name="monday-end" value="18:00">
+                                </div>
+                            </div>
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="tuesday-enabled" checked>
+                                    <label for="tuesday-enabled">Tuesday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="tuesday-start" value="08:00">
+                                    <span>to</span>
+                                    <input type="time" name="tuesday-end" value="18:00">
+                                </div>
+                            </div>
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="wednesday-enabled" checked>
+                                    <label for="wednesday-enabled">Wednesday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="wednesday-start" value="08:00">
+                                    <span>to</span>
+                                    <input type="time" name="wednesday-end" value="18:00">
+                                </div>
+                            </div>
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="thursday-enabled" checked>
+                                    <label for="thursday-enabled">Thursday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="thursday-start" value="08:00">
+                                    <span>to</span>
+                                    <input type="time" name="thursday-end" value="18:00">
+                                </div>
+                            </div>
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="friday-enabled" checked>
+                                    <label for="friday-enabled">Friday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="friday-start" value="08:00">
+                                    <span>to</span>
+                                    <input type="time" name="friday-end" value="16:00">
+                                </div>
+                            </div>
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="saturday-enabled" checked>
+                                    <label for="saturday-enabled">Saturday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="saturday-start" value="09:00">
+                                    <span>to</span>
+                                    <input type="time" name="saturday-end" value="13:00">
+                                </div>
+                            </div>
+                            <div class="day-hours">
+                                <div class="day-label">
+                                    <input type="checkbox" id="sunday-enabled">
+                                    <label for="sunday-enabled">Sunday</label>
+                                </div>
+                                <div class="hours-inputs">
+                                    <input type="time" name="sunday-start" value="09:00" disabled>
+                                    <span>to</span>
+                                    <input type="time" name="sunday-end" value="13:00" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Appointment Settings -->
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-calendar-check"></i> Appointment Settings</h2>
+                            <p>Configure default appointment settings and scheduling rules</p>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="default-duration">Default Appointment Duration</label>
+                                    <select id="default-duration" name="appointmentDuration">
+                                        <option value="10">10 minutes</option>
+                                        <option value="15">15 minutes</option>
+                                        <option value="20">20 minutes</option>
+                                        <option value="25">25 minutes</option>
+                                        <option value="30" selected>30 minutes</option>
+                                        <option value="35">35 minutes</option>
+                                        <option value="40">40 minutes</option>
+                                        <option value="45">45 minutes</option>
+                                        <option value="50">50 minutes</option>
+                                        <option value="55">55 minutes</option>
+                                        <option value="60">60 minutes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="booking-advance">Max Booking Advance (days)</label>
+                                    <input type="number" id="booking-advance" name="maxBookingAdvance" value="90" min="1" max="365">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="buffer-time">Buffer Time Between Appointments</label>
+                                    <select id="buffer-time" name="bufferTime">
+                                        <option value="0">No buffer</option>
+                                        <option value="2">2 minutes</option>
+                                        <option value="3">3 minutes</option>
+                                        <option value="5">5 minutes</option>
+                                        <option value="7">7 minutes</option>
+                                        <option value="10" selected>10 minutes</option>
+                                        <option value="12">12 minutes</option>
+                                        <option value="15">15 minutes</option>
+                                        <option value="20">20 minutes</option>
+                                        <option value="25">25 minutes</option>
+                                        <option value="30">30 minutes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cancellation-window">Cancellation Window (hours)</label>
+                                    <input type="number" id="cancellation-window" name="cancellationWindow" value="24" min="1" max="168">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="allow-online-booking" name="allowOnlineBooking" checked>
+                                    <label for="allow-online-booking">Allow Online Booking</label>
+                                </div>
+                                <div class="form-group checkbox-group">
+                                    <input type="checkbox" id="require-confirmation" name="requireConfirmation" checked>
+                                    <label for="require-confirmation">Require Appointment Confirmation</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification Settings -->
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-bell"></i> Notification Settings</h2>
+                            <p>Configure how and when notifications are sent</p>
+                        </div>
+                        <div class="form-grid">
+                            <div class="notification-group">
+                                <h3>Email Notifications</h3>
+                                <div class="checkbox-list">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="email-new-appointment" name="emailNewAppointment" checked>
+                                        <label for="email-new-appointment">New appointment booked</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="email-appointment-reminder" name="emailAppointmentReminder" checked>
+                                        <label for="email-appointment-reminder">Appointment reminders</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="email-cancellation" name="emailCancellation" checked>
+                                        <label for="email-cancellation">Appointment cancellations</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="email-no-show" name="emailNoShow">
+                                        <label for="email-no-show">No-show notifications</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-group">
+                                <h3>SMS Notifications</h3>
+                                <div class="checkbox-list">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sms-confirmation" name="smsConfirmation">
+                                        <label for="sms-confirmation">Appointment confirmations</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sms-reminder" name="smsReminder">
+                                        <label for="sms-reminder">Appointment reminders</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="sms-cancellation" name="smsCancellation">
+                                        <label for="sms-cancellation">Cancellation notifications</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="reminder-time">Send Reminders</label>
+                                    <select id="reminder-time" name="reminderTime">
+                                        <option value="1">1 hour before</option>
+                                        <option value="2">2 hours before</option>
+                                        <option value="24" selected>24 hours before</option>
+                                        <option value="48">48 hours before</option>
+                                        <option value="72">72 hours before</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notification-email">Notification Email</label>
+                                    <input type="email" id="notification-email" name="notificationEmail" value="notifications@appointpro.com">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Preferences -->
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-cogs"></i> System Preferences</h2>
+                            <p>Customize the appearance and behavior of your system</p>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="theme">Theme</label>
+                                    <select id="theme" name="theme">
+                                        <option value="light" selected>Light</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="auto">Auto (System)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="language">Language</label>
+                                    <select id="language" name="language">
+                                        <option value="en" selected>English</option>
+                                        <option value="es">Español</option>
+                                        <option value="fr">Français</option>
+                                        <option value="de">Deutsch</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="timezone">Timezone</label>
+                                    <select id="timezone" name="timezone">
+                                        <option value="America/New_York" selected>Eastern Time (ET)</option>
+                                        <option value="America/Chicago">Central Time (CT)</option>
+                                        <option value="America/Denver">Mountain Time (MT)</option>
+                                        <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                                        <option value="UTC">UTC</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date-format">Date Format</label>
+                                    <select id="date-format" name="dateFormat">
+                                        <option value="MM/DD/YYYY" selected>MM/DD/YYYY</option>
+                                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                                        <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                                        <option value="MMM DD, YYYY">MMM DD, YYYY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="time-format">Time Format</label>
+                                    <select id="time-format" name="timeFormat">
+                                        <option value="12" selected>12-hour (AM/PM)</option>
+                                        <option value="24">24-hour</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start-of-week">Start of Week</label>
+                                    <select id="start-of-week" name="startOfWeek">
+                                        <option value="0" selected>Sunday</option>
+                                        <option value="1">Monday</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Management -->
+                    <div class="settings-section">
+                        <div class="section-header">
+                            <h2><i class="fas fa-database"></i> Data Management</h2>
+                            <p>Import, export, and manage your appointment data</p>
+                        </div>
+                        <div class="data-management-grid">
+                            <div class="data-action-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Export Data</h3>
+                                    <p>Download your appointments and client data as CSV or PDF</p>
+                                    <button type="button" class="btn btn-secondary" onclick="appointmentManager.exportReports()">
+                                        <i class="fas fa-download"></i>
+                                        Export All Data
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-action-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-upload"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Import Data</h3>
+                                    <p>Import appointments from CSV files or other systems</p>
+                                    <button type="button" class="btn btn-secondary">
+                                        <i class="fas fa-upload"></i>
+                                        Import Data
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-action-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-sync-alt"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Backup Data</h3>
+                                    <p>Create a backup of all your data for safekeeping</p>
+                                    <button type="button" class="btn btn-secondary">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Create Backup
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-action-card warning">
+                                <div class="card-icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div class="card-content">
+                                    <h3>Reset Data</h3>
+                                    <p>Clear all data and start fresh (cannot be undone)</p>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="fas fa-trash-alt"></i>
+                                        Reset All Data
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i>
+                            Reset to Defaults
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Settings
+                        </button>
+                    </div>
+                </form>
+            </div>
+            </div> <!-- End of settings-content -->
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

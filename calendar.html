@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - Appointment Management System</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-calendar-check"></i>
+                <h2>AppointPro</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-appointment.html">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fas fa-list"></i>
+                        <span>View Appointments</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="clients.html">
+                        <i class="fas fa-users"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="appointmentManager.checkSettingsAccess()">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Calendar View</h1>
+                    <p>Visual overview of all appointments and scheduling.</p>
+                </div>
+                <div class="header-right">
+                    <div class="calendar-controls">
+                        <button class="btn btn-secondary calendar-prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <h2>January 2024</h2>
+                        <button class="btn btn-secondary calendar-next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary" onclick="window.location.href='add-appointment.html'">
+                        <i class="fas fa-plus"></i>
+                        New Appointment
+                    </button>
+                    <div class="user-profile">
+                        <img src="images/user-profile.svg" alt="User">
+                        <span>Rajesh Kumar</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Calendar Legend -->
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <div class="legend-color confirmed"></div>
+                    <span>Confirmed</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color pending"></div>
+                    <span>Pending</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color cancelled"></div>
+                    <span>Cancelled</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color completed"></div>
+                    <span>Completed</span>
+                </div>
+            </div>
+
+            <!-- Calendar Container -->
+            <div class="calendar-container">
+                <!-- Calendar Header -->
+                <div class="calendar-header">
+                    <div class="day-header">Sun</div>
+                    <div class="day-header">Mon</div>
+                    <div class="day-header">Tue</div>
+                    <div class="day-header">Wed</div>
+                    <div class="day-header">Thu</div>
+                    <div class="day-header">Fri</div>
+                    <div class="day-header">Sat</div>
+                </div>
+
+                <!-- Calendar Grid -->
+                <div class="calendar-grid">
+                    <!-- Calendar days will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Today's Appointments Sidebar -->
+            <div class="today-schedule">
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Today's Schedule</h2>
+                        <span class="schedule-date">January 15, 2024</span>
+                    </div>
+                    <div class="today-appointments">
+                        <!-- Today's appointments will be populated by JavaScript -->
+                        <div class="appointment-item">
+                            <div class="appointment-time">09:00</div>
+                            <div class="appointment-info">
+                                <h4>Dr. Priya Raman</h4>
+                                <p>Rajesh Kumar - Checkup</p>
+                                <span class="status confirmed">Confirmed</span>
+                            </div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">11:30</div>
+                            <div class="appointment-info">
+                                <h4>Dr. Rajesh Iyer</h4>
+                                <p>Meera Sundaram - Consultation</p>
+                                <span class="status pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">14:00</div>
+                            <div class="appointment-info">
+                                <h4>Dr. Anjali Kumar</h4>
+                                <p>Suresh Murugan - Follow-up</p>
+                                <span class="status confirmed">Confirmed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="schedule-actions">
+                        <button class="btn btn-primary" onclick="window.location.href='add-appointment.html'">
+                            <i class="fas fa-plus"></i>
+                            Add Appointment
+                        </button>
+                        <button class="btn btn-secondary" onclick="window.location.href='appointments.html'">
+                            <i class="fas fa-list"></i>
+                            View All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="calendar-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Today</h3>
+                        <p class="stat-number">8</p>
+                        <span class="stat-label">Appointments</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-week"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>This Week</h3>
+                        <p class="stat-number">42</p>
+                        <span class="stat-label">Appointments</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>This Month</h3>
+                        <p class="stat-number">156</p>
+                        <span class="stat-label">Appointments</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Utilization</h3>
+                        <p class="stat-number">78%</p>
+                        <span class="stat-label">Rate</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

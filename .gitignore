@@ -1,0 +1,43 @@
+# Node dependencies
+node_modules/
+**/node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+coverage/
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Dependency directories
+frontend/node_modules/
+mern-app/node_modules/
+mern-app-1/node_modules/
+my-fullstack-app/node_modules/
+my-fullstack-app-1/node_modules/

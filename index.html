@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Management System</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-calendar-check"></i>
+                <h2>AppointPro</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-appointment.html">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fas fa-list"></i>
+                        <span>View Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="clients.html">
+                        <i class="fas fa-users"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="appointmentManager.checkSettingsAccess()">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your appointment overview.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search appointments...">
+                    </div>
+                    <div class="user-profile">
+                        <img src="images/user-profile.svg" alt="User">
+                        <span>Rajesh Kumar</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-day"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Today's Appointments</h3>
+                        <p class="stat-number">8</p>
+                        <span class="stat-change positive">+2 from yesterday</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Pending</h3>
+                        <p class="stat-number">12</p>
+                        <span class="stat-change neutral">No change</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Completed</h3>
+                        <p class="stat-number">45</p>
+                        <span class="stat-change positive">+5 this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Clients</h3>
+                        <p class="stat-number">156</p>
+                        <span class="stat-change positive">+3 new clients</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Today's Appointments -->
+            <div class="content-grid">
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Today's Appointments</h2>
+                        <a href="appointments.html" class="view-all">View All</a>
+                    </div>
+                    <div class="appointments-list">
+                        <div class="appointment-item">
+                            <div class="appointment-time">
+                                <span class="time">09:00 AM</span>
+                                <span class="duration">30 min</span>
+                            </div>
+                            <div class="appointment-details">
+                                <h4>Dr. Priya Raman - Dental Checkup</h4>
+                                <p>Patient: Rajesh Kumar</p>
+                                <span class="status confirmed">Confirmed</span>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">
+                                <span class="time">11:30 AM</span>
+                                <span class="duration">20 min</span>
+                            </div>
+                            <div class="appointment-details">
+                                <h4>Dr. Rajesh Iyer - Consultation</h4>
+                                <p>Patient: Meera Sundaram</p>
+                                <span class="status pending">Pending</span>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="appointment-item">
+                            <div class="appointment-time">
+                                <span class="time">02:00 PM</span>
+                                <span class="duration">25 min</span>
+                            </div>
+                            <div class="appointment-details">
+                                <h4>Dr. Anjali Kumar - Follow-up</h4>
+                                <p>Patient: Suresh Murugan</p>
+                                <span class="status confirmed">Confirmed</span>
+                            </div>
+                            <div class="appointment-actions">
+                                <button class="btn-icon"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <h2>Quick Actions</h2>
+                    </div>
+                    <div class="quick-actions">
+                        <a href="add-appointment.html" class="quick-action-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>New Appointment</span>
+                        </a>
+                        <a href="clients.html" class="quick-action-btn">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Add Client</span>
+                        </a>
+                        <a href="calendar.html" class="quick-action-btn">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>View Calendar</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>Recent Activity</h2>
+                </div>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-calendar-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>New appointment</strong> scheduled for Dr. Raman tomorrow at 10:00 AM</p>
+                            <span class="activity-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>New client</strong> Lakshmi Selvan added to the system</p>
+                            <span class="activity-time">4 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p><strong>Appointment completed</strong> with Dr. Iyer for patient Rajesh Kumar</p>
+                            <span class="activity-time">6 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 

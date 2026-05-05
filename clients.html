@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients - Appointment Management System</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-calendar-check"></i>
+                <h2>AppointPro</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-appointment.html">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fas fa-list"></i>
+                        <span>View Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="clients.html">
+                        <i class="fas fa-users"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="appointmentManager.checkSettingsAccess()">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Client Management</h1>
+                    <p>Manage your client database and contact information.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search clients...">
+                    </div>
+                    <button class="btn btn-primary" onclick="appointmentManager.showAddClientModal()">
+                        <i class="fas fa-user-plus"></i>
+                        Add Client
+                    </button>
+                    <div class="user-profile">
+                        <img src="images/user-profile.svg" alt="User">
+                        <span>Rajesh Kumar</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Client Filters -->
+            <div class="filters-section">
+                <div class="filters-left">
+                    <div class="filter-group">
+                        <label for="client-status-filter">Status</label>
+                        <select id="client-status-filter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="new">New</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sort-by">Sort By</label>
+                        <select id="sort-by">
+                            <option value="name">Name</option>
+                            <option value="created">Date Added</option>
+                            <option value="lastVisit">Last Visit</option>
+                            <option value="appointments">Total Appointments</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="view-mode">View</label>
+                        <select id="view-mode">
+                            <option value="grid">Grid View</option>
+                            <option value="list">List View</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filters-right">
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-download"></i>
+                        Export Clients
+                    </button>
+                </div>
+            </div>
+
+            <!-- Client Statistics -->
+           
+
+            <!-- Clients Grid -->
+            <div class="clients-grid">
+                <!-- Client cards will be populated by JavaScript -->
+            </div>
+
+           
+
+    <script src="app.js"></script>
+</body>
+</html>

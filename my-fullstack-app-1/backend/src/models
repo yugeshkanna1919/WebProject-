@@ -1,0 +1,18 @@
+// This file defines the Mongoose model for the data structure used in the application.
+
+const mongoose = require('mongoose');
+
+const dataSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    value: {
+        type: Number,
+        required: true
+    }
+});
+
+const DataModel = mongoose.model('Data', dataSchema);
+
+module.exports = DataModel;

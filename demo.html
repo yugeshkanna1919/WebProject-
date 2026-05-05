@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Features Demo - Appointment Management System</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .demo-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .demo-header {
+            border-bottom: 2px solid #f7fafc;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        .demo-header h2 {
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+        .demo-header p {
+            color: #718096;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .feature-card {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .demo-button {
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        .shortcuts-list {
+            background: #f7fafc;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .shortcuts-list div {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .shortcuts-list div:last-child {
+            border-bottom: none;
+        }
+        .shortcut-key {
+            background: #667eea;
+            color: white;
+            padding: 0.125rem 0.5rem;
+            border-radius: 3px;
+            margin-right: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-calendar-check"></i>
+                <h2>AppointPro</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="add-appointment.html">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Appointment</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="appointments.html">
+                        <i class="fas fa-list"></i>
+                        <span>View Appointments</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="calendar.html">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="clients.html">
+                        <i class="fas fa-users"></i>
+                        <span>Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="demo.html">
+                        <i class="fas fa-code"></i>
+                        <span>JS Demo</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>JavaScript Features Demo</h1>
+                    <p>Interactive demonstration of enhanced JavaScript functionality.</p>
+                </div>
+                <div class="header-right">
+                    <div class="current-time">00:00:00</div>
+                    <div class="user-profile">
+                        <img src="images/user-profile.svg" alt="User">
+                        <span>John Doe</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Feature Overview -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2><i class="fas fa-star"></i> Enhanced Features Overview</h2>
+                    <p>This appointment management system includes powerful JavaScript enhancements for better user experience.</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-shield-alt"></i> Form Validation</h3>
+                        <p>Real-time form validation with custom error messages and visual feedback.</p>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary demo-button" onclick="demoFormValidation()">
+                                <i class="fas fa-check"></i> Demo Validation
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-save"></i> Auto-save</h3>
+                        <p>Automatic draft saving every 30 seconds with recovery on page reload.</p>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary demo-button" onclick="demoAutoSave()">
+                                <i class="fas fa-edit"></i> Demo Auto-save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-bell"></i> Notifications</h3>
+                        <p>Toast notifications for success, error, and info messages.</p>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary demo-button" onclick="showSuccessNotification()">
+                                <i class="fas fa-check-circle"></i> Success
+                            </button>
+                            <button class="btn btn-secondary demo-button" onclick="showErrorNotification()">
+                                <i class="fas fa-exclamation-circle"></i> Error
+                            </button>
+                            <button class="btn btn-secondary demo-button" onclick="showInfoNotification()">
+                                <i class="fas fa-info-circle"></i> Info
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-search"></i> Smart Search</h3>
+                        <p>Intelligent search across appointments and clients with real-time results.</p>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary demo-button" onclick="demoSearch()">
+                                <i class="fas fa-search"></i> Demo Search
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-download"></i> Data Export</h3>
+                        <p>Export data in multiple formats: JSON, CSV, and Excel.</p>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary demo-button" onclick="DataManager.exportData('json')">
+                                <i class="fas fa-file-code"></i> JSON
+                            </button>
+                            <button class="btn btn-secondary demo-button" onclick="DataManager.exportData('csv')">
+                                <i class="fas fa-file-csv"></i> CSV
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-clock"></i> Real-time Updates</h3>
+                        <p>Live clock and relative time updates throughout the application.</p>
+                        <div class="demo-buttons">
+                            <button class="btn btn-primary demo-button" onclick="addRelativeTimeDemo()">
+                                <i class="fas fa-clock"></i> Demo Time
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyboard Shortcuts -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h2>
+                    <p>Navigate the system efficiently with these keyboard shortcuts.</p>
+                </div>
+                
+                <div class="shortcuts-list">
+                    <div><span class="shortcut-key">Ctrl + N</span> New Appointment</div>
+                    <div><span class="shortcut-key">Ctrl + H</span> Go to Dashboard</div>
+                    <div><span class="shortcut-key">Ctrl + Shift + A</span> View Appointments</div>
+                    <div><span class="shortcut-key">Ctrl + Shift + C</span> Calendar View</div>
+                    <div><span class="shortcut-key">Ctrl + Shift + P</span> Clients Page</div>
+                    <div><span class="shortcut-key">Ctrl + Shift + R</span> Reports Page</div>
+                    <div><span class="shortcut-key">Ctrl + Shift + S</span> Settings Page</div>
+                    <div><span class="shortcut-key">Ctrl + S</span> Save Current Form</div>
+                    <div><span class="shortcut-key">Escape</span> Close Modals</div>
+                </div>
+            </div>
+
+            <!-- Utility Functions -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2><i class="fas fa-tools"></i> Utility Functions</h2>
+                    <p>Helpful utility functions for data formatting and validation.</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-phone"></i> Phone Formatting</h3>
+                        <p>Automatically format phone numbers to (XXX) XXX-XXXX.</p>
+                        <input type="text" placeholder="Enter phone number" id="phone-demo" class="form-control" style="margin: 0.5rem 0;">
+                        <button class="btn btn-primary demo-button" onclick="formatPhoneDemo()">
+                            <i class="fas fa-magic"></i> Format
+                        </button>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-envelope"></i> Email Validation</h3>
+                        <p>Real-time email validation with visual feedback.</p>
+                        <input type="text" placeholder="Enter email address" id="email-demo" class="form-control" style="margin: 0.5rem 0;">
+                        <button class="btn btn-primary demo-button" onclick="validateEmailDemo()">
+                            <i class="fas fa-check"></i> Validate
+                        </button>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-calendar"></i> Age Calculator</h3>
+                        <p>Calculate age from date of birth.</p>
+                        <input type="date" id="birthdate-demo" class="form-control" style="margin: 0.5rem 0;">
+                        <button class="btn btn-primary demo-button" onclick="calculateAgeDemo()">
+                            <i class="fas fa-calculator"></i> Calculate
+                        </button>
+                        <div id="age-result" style="margin-top: 0.5rem; font-weight: 600;"></div>
+                    </div>
+
+                    <div class="feature-card">
+                        <h3><i class="fas fa-clock"></i> Time Slots</h3>
+                        <p>Generate available time slots for appointments.</p>
+                        <button class="btn btn-primary demo-button" onclick="generateTimeSlotsDemo()">
+                            <i class="fas fa-list"></i> Generate Slots
+                        </button>
+                        <div id="time-slots-result"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Demo -->
+            <div class="demo-section">
+                <div class="demo-header">
+                    <h2><i class="fas fa-tasks"></i> Progress & Loading States</h2>
+                    <p>Visual feedback for long-running operations.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3><i class="fas fa-spinner"></i> Loading Demo</h3>
+                    <p>Simulate loading states and progress indicators.</p>
+                    <button class="btn btn-primary demo-button" onclick="demoLoadingState()">
+                        <i class="fas fa-play"></i> Start Loading Demo
+                    </button>
+                    <div class="progress-bar" style="display: none;" id="progress-demo">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div id="loading-demo-target" style="margin-top: 1rem;">
+                        <p>This content will show loading state</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Demo Functions
+        function demoFormValidation() {
+            appointmentManager.showNotification('Form validation features are active on the Add Appointment page!', 'info');
+        }
+
+        function demoAutoSave() {
+            appointmentManager.showNotification('Auto-save is enabled on forms - try editing the Add Appointment form!', 'info');
+        }
+
+        function showSuccessNotification() {
+            appointmentManager.showNotification('This is a success notification!', 'success');
+        }
+
+        function showErrorNotification() {
+            appointmentManager.showNotification('This is an error notification!', 'error');
+        }
+
+        function showInfoNotification() {
+            appointmentManager.showNotification('This is an info notification!', 'info');
+        }
+
+        function demoSearch() {
+            appointmentManager.showNotification('Search functionality is available in the header search bar!', 'info');
+        }
+
+        function formatPhoneDemo() {
+            const input = document.getElementById('phone-demo');
+            const formatted = AppointmentUtils.formatPhoneNumber(input.value);
+            input.value = formatted;
+            appointmentManager.showNotification('Phone number formatted!', 'success');
+        }
+
+        function validateEmailDemo() {
+            const input = document.getElementById('email-demo');
+            const isValid = AppointmentUtils.validateEmail(input.value);
+            if (isValid) {
+                input.style.borderColor = '#48bb78';
+                appointmentManager.showNotification('Valid email address!', 'success');
+            } else {
+                input.style.borderColor = '#f56565';
+                appointmentManager.showNotification('Invalid email address!', 'error');
+            }
+        }
+
+        function calculateAgeDemo() {
+            const input = document.getElementById('birthdate-demo');
+            const result = document.getElementById('age-result');
+            if (input.value) {
+                const age = AppointmentUtils.calculateAge(input.value);
+                result.textContent = `Age: ${age} years old`;
+                result.style.color = '#667eea';
+            } else {
+                appointmentManager.showNotification('Please select a birth date!', 'error');
+            }
+        }
+
+        function generateTimeSlotsDemo() {
+            const result = document.getElementById('time-slots-result');
+            const slots = AppointmentUtils.getTimeSlots('09:00', '17:00', 30, 10);
+            
+            result.innerHTML = '<div class="time-slots">' + 
+                slots.slice(0, 8).map(slot => `<div class="time-slot">${slot}</div>`).join('') + 
+                '</div>';
+            
+            appointmentManager.showNotification('Time slots generated!', 'success');
+        }
+
+        function addRelativeTimeDemo() {
+            const now = new Date();
+            const pastTime = new Date(now.getTime() - (2 * 60 * 60 * 1000)); // 2 hours ago
+            
+            const demo = document.createElement('div');
+            demo.setAttribute('data-relative-time', pastTime.toISOString());
+            demo.style.cssText = 'padding: 0.5rem; background: #f7fafc; border-radius: 6px; margin-top: 1rem;';
+            demo.textContent = 'Loading relative time...';
+            
+            document.querySelector('.feature-card:last-child').appendChild(demo);
+            appointmentManager.showNotification('Relative time demo added!', 'success');
+        }
+
+        function demoLoadingState() {
+            const target = document.getElementById('loading-demo-target');
+            const progress = document.getElementById('progress-demo');
+            const progressFill = document.getElementById('progress-fill');
+            
+            // Show progress bar
+            progress.style.display = 'block';
+            
+            // Add loading class
+            target.classList.add('loading');
+            
+            // Simulate progress
+            let width = 0;
+            const interval = setInterval(() => {
+                width += 10;
+                progressFill.style.width = width + '%';
+                
+                if (width >= 100) {
+                    clearInterval(interval);
+                    target.classList.remove('loading');
+                    progress.style.display = 'none';
+                    progressFill.style.width = '0%';
+                    appointmentManager.showNotification('Loading demo completed!', 'success');
+                }
+            }, 200);
+        }
+
+        // Add tooltips to demo buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.demo-button');
+            buttons.forEach(btn => {
+                if (!btn.hasAttribute('title')) {
+                    btn.setAttribute('title', 'Click to see this feature in action');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
